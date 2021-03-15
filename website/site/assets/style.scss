@@ -1,0 +1,15 @@
+@import 'node_modules/nhsuk-frontend/packages/nhsuk';
+
+.nhsuk-header__logo--only .nhsuk-header__link--service {
+  max-width:100%;
+}
+
+.app-card--transparent {
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.2);
+  color: #fff;
+}
+.app-latest-update {
+  padding-bottom: 56px;
+  padding-top: 56px;
+}

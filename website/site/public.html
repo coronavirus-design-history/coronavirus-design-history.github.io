@@ -1,0 +1,66 @@
+{% set page_title = config.title %}
+{% extends "_base.html" %}
+
+{% block content %}
+<main id="maincontent" role="main">
+  <section class="nhsuk-hero">
+      <div class="nhsuk-width-container nhsuk-hero--border">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <div class="nhsuk-hero__wrapper app-hero__wrapper">
+              <h1 class="nhsuk-u-margin-bottom-4">Find something</h1>
+              <p class="nhsuk-body-l nhsuk-u-margin-bottom-1">
+                Find information about that thing.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="nhsuk-section nhsuk-u-padding-top-7">
+      <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            {% for tool in config.tools %}
+              {% if tool.status == "In progress" %}
+                <h4  class="nhsuk-heading-s">
+                  {% if tool.path %}
+                    <a href="{{config.base_url}}{{tool.path}}">{{tool.title}}</a>
+                  {% else %}
+                    {{tool.title}}
+                  {% endif %}
+                </h4>
+                <p class="nhsuk-body">
+                  {{tool.description}}
+                </p>
+                {% if tool.stats %}
+                  <div class="nhsuk-grid-row">
+                    {% for stat in tool.stats %}
+                    <div class="nhsuk-grid-column-one-third nhsuk-u-padding-bottom-4">
+                      <h3 class="nhsuk-u-visually-hidden">{{stat.description}}</h3>
+                      <div class="nhsuk-u-font-size-48 nhsuk-u-font-weight-bold">{{stat.number}}</div> {{stat.description}}
+                    </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+                <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-u-margin-bottom-4"/>
+              {% endif %}
+            {% endfor %}
+            <h3  class="nhsuk-heading-m">
+              Coming soon
+            </h3>
+            <ul class="nhsuk-list">
+              {% for tool in config.tools %}
+                {% if tool.status == "To explore" %}
+                  <li>
+                      {{tool.title}}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}

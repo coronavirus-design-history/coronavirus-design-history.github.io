@@ -1,0 +1,16 @@
+---
+title: Placeholder
+subtitle: Document something
+description: Share information about things
+about_team: <p class="nhsuk-body">This is being developed by.</p> <p class="nhsuk-body"><a href="mailto:some-email">Contact us</a> if you have a question or want to give feedback.</p>
+base_url: ""
+tools:
+  -
+    title: Something
+    description: Or other.
+    path: /path
+    status: In progress
+    stats:
+      -
+        number: 0
+        description: Something

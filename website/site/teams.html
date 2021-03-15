@@ -1,0 +1,79 @@
+{% set page_title = config.title %}
+{% extends "_base.html" %}
+
+
+{% block content %}
+<main id="maincontent" role="main">
+  <section class="nhsuk-hero">
+      <div class="nhsuk-width-container nhsuk-hero--border">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <div class="nhsuk-hero__wrapper app-hero__wrapper">
+              <h1 class="nhsuk-u-margin-bottom-4">{{ config.subtitle }}</h1>
+              <p class="nhsuk-body-l nhsuk-u-margin-bottom-1">
+                {{ config.description }}
+              </p>
+            </div>
+          </div>
+          <div class="nhsuk-grid-column-one-third app-latest-update">
+            <div class="nhsuk-card app-card--transparent nhsuk-u-margin-bottom-0 nhsuk-u-margin-top-0">
+              <div class="nhsuk-card__content">
+                <h2 class="nhsuk-card__heading nhsuk-heading-m">Can we test with your team?</h2>
+                <p class="nhsuk-card__description">We are currently conducting user research with teams in the NHS and civil service</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="nhsuk-section nhsuk-u-padding-top-7">
+      <div class="nhsuk-width-container">
+        <div class="nhsuk-grid-row">
+          <div class="nhsuk-grid-column-two-thirds">
+            <h2  class="nhsuk-heading-l">
+              What you can publish
+            </h2>
+            {% if config.introduction %}
+              <p class="nhsuk-body">{{ config.introduction }}</p>
+            {% endif %}
+            {% for tool in config.tools %}
+              {% if tool.status == "In progress" %}
+                <h4  class="nhsuk-heading-s">
+                  {{tool.title}}
+                </h4>
+                <p class="nhsuk-body">
+                  {{tool.contribution_description}}
+                </p>
+              {% endif %}
+              {% if tool.contribution_url %}
+                <p class="nhsuk-body-s">
+                    <a href="{{tool.contribution_url}}">{{tool.contribution_text}}</a>
+                </p>
+                <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-u-margin-bottom-4"/>
+              {% endif %}
+            {% endfor %}
+            <h3  class="nhsuk-heading-m">
+              To explore
+            </h3>
+            <ul class="nhsuk-list">
+              {% for tool in config.tools %}
+                {% if tool.status == "To explore" %}
+                  <li>
+                      {{tool.title}}
+                  </li>
+                {% endif %}
+              {% endfor %}
+            </ul>
+            <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-u-margin-bottom-4"/>
+            <h2  class="nhsuk-heading-l">
+              About the team
+            </h2>
+            <p>
+              {{config.about_team}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+{% endblock %}
